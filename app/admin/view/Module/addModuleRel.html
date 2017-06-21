@@ -1,0 +1,167 @@
+{load href="/admin_style/skin.css" /}
+<style type="text/css">
+    <!--
+    body {
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        background-color: #EEF2FB;
+    }
+    -->
+</style>
+<body>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="17" valign="top" background="/admin_images/mail_leftbg.gif"><img src="/admin_images/left-top-right.gif" width="17" height="29" /></td>
+        <td valign="top" background="/admin_images/content-bg.gif"><table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
+            <tr>
+                <td height="31"><div class="titlebt">欢迎界面</div></td>
+            </tr>
+        </table></td>
+        <td width="16" valign="top" background="/admin_images/mail_rightbg.gif"><img src="/admin_images/nav-right-bg.gif" width="16" height="29" /></td>
+    </tr>
+    <tr>
+        <td valign="middle" background="/admin_images/mail_leftbg.gif">&nbsp;</td>
+        <td valign="top" bgcolor="#F7F8F9"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="53%" valign="top">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td valign="top">&nbsp;</td>
+            </tr>
+            <tr>
+                <td valign="top"><span class="left_bt">网站后台管理系统-{$modulename}</span><br>
+                    <br>
+            <span class="left_txt">&nbsp;<img src="/admin_images/ts.gif" width="16" height="16"> 提示：<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您</span><span class="left_txt">可以在本栏目添加网站模块，该栏目只有具备最高管理权限的用户如administrator用户才可操作；<br>
+</span></td>
+                <td width="7%">&nbsp;</td>
+                <td width="40%" valign="top"><table width="100%" height="144" border="0" cellpadding="0" cellspacing="0" class="line_table">
+                    <tr>
+                        <td width="7%" height="27" background="/admin_images/news-title-bg.gif"><img src="/admin_images/news-title-bg.gif" width="2" height="27"></td>
+                        <td width="93%" background="/admin_images/news-title-bg.gif" class="left_bt2">最新动态</td>
+                    </tr>
+                    <tr>
+                        <td height="102" valign="top">&nbsp;</td>
+                        <td height="102" valign="top"></td>
+                    </tr>
+                    <tr>
+                        <td height="5" colspan="2">&nbsp;</td>
+                    </tr>
+                </table></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td valign="top"><!--JavaScript部分-->
+                    <SCRIPT language=javascript>
+                        function secBoard(n)
+                        {
+                            for(i=0;i<secTable.cells.length;i++)
+                                secTable.cells[i].className="sec1";
+                            secTable.cells[n].className="sec2";
+                            for(i=0;i<mainTable.tBodies.length;i++)
+                                mainTable.tBodies[i].style.display="none";
+                            mainTable.tBodies[n].style.display="block";
+                        }
+                    </SCRIPT>
+                    <!--HTML部分-->
+                    <TABLE class=main_tab id=mainTable cellSpacing=0
+                           cellPadding=0 width=100% border=0>
+                        <!--关于TBODY标记-->
+                        <TBODY style="DISPLAY: block">
+                        <TR>
+                            <TD vAlign=top align=middle><TABLE width="800px" height="187" border=0 align="center" cellPadding=0 cellSpacing=0>
+                                <form name="form1" method="post" action="{:url('Module/addModule_cl')}">
+                                    <TBODY>
+                                    <TR>
+                                        <TD height="5" colspan="4"></TD>
+                                    </TR>
+                                    <TR>
+                                        <TD width="2%" bgcolor="#FAFBFC">&nbsp;</TD>
+                                        <TD width="13%" height="30" bgcolor="#FAFBFC"><span class="left_bt">模块名称：</span></TD>
+                                        <TD width="34%" height="30" bgcolor="#FAFBFC"><input type="text" name="modulename" /></TD>
+                                        <TD width="51%" bgcolor="#FAFBFC"><span class="left_txt">//&nbsp;模块名称在6-20个字符之间</span></TD>
+                                    </TR>
+                                    <TR>
+                                        <TD bgcolor="#FAFBFC">&nbsp;</TD>
+                                        <TD height="30" bgcolor="#FAFBFC"><span class="left_bt">模块描述：</span></TD>
+                                        <TD height="30" bgcolor="#FAFBFC"><textarea cols=30 rows=4 name="moduleslug" ></textarea></TD>
+                                        <TD bgcolor="#FAFBFC"><span class="left_txt">&nbsp;&nbsp;&nbsp;//&nbsp;模块描述在100个字符以内</span></TD>
+                                    </TR>
+                                    <TR>
+                                        <TD bgcolor="#FAFBFC">&nbsp;</TD>
+                                        <TD height="30" bgcolor="#FAFBFC"><span class="left_bt">模块类型：</span></TD>
+                                        <TD height="30" bgcolor="#FAFBFC">
+                                            <select name="moduletype">
+                                                <option value="0">文章</option>
+                                                <option value="1">视频</option>
+                                                <option value="2">图片</option>
+                                                <option value="3">单页</option>
+                                            </select>
+                                        </TD>
+                                        <TD bgcolor="#FAFBFC">&nbsp;</TD>
+                                    </TR>
+                                    <TR>
+                                        <TD bgcolor="#FAFBFC">&nbsp;</TD>
+                                        <TD height="30" bgcolor="#FAFBFC">&nbsp;</TD>
+                                        <TD height="30" bgcolor="#FAFBFC"><input type="submit" value="确认添加"/>&nbsp;&nbsp;<input type="reset" value="重新填写"/></TD>
+                                        <TD bgcolor="#FAFBFC">&nbsp;</TD>
+                                    </TR>
+                                    <TR>
+                                        <TD height="5" colspan="4"></TD>
+                                    </TR>
+                                    </TBODY>
+                                    <input type="hidden" name="hidconfirm" value="1" />
+                                </form>
+                            </TABLE></TD>
+                        </TR>
+                        </TBODY>
+                        <!--关于cells集合-->
+                        <TBODY style="DISPLAY: none">
+                        </TBODY>
+                        <!--关于tBodies集合-->
+                        <TBODY style="DISPLAY: none">
+                        </TBODY>
+                        <!--关于display属性-->
+                        <TBODY style="DISPLAY: none">
+                        <TR>
+                            <TD vAlign=top align=middle>&nbsp;</TD>
+                        </TR>
+                        </TBODY>
+                    </TABLE></td>
+                <td>&nbsp;</td>
+                <td valign="top"><table width="100%" height="144" border="0" cellpadding="0" cellspacing="0" class="line_table">
+                    <tr>
+                        <td width="7%" height="27" background="/admin_images/news-title-bg.gif"><img src="../../../../public/static/images/news-title-bg.gif" width="2" height="27"></td>
+                        <td width="93%" background="/admin_images/news-title-bg.gif" class="left_bt2">程序说明</td>
+                    </tr>
+                    <tr>
+                        <td height="102" valign="top">&nbsp;</td>
+                        <td height="102" valign="top"><label></label>
+                            <label>
+              <textarea name="textarea" cols="48" rows="8" class="left_txt">一、专业的地区级商家门户建站首选方案！
+二、全站一号通，一次注册，终身使用，一个帐号，全站通用！
+三、分类信息、商家展示（百业联盟）、网上商城、网上名片（网上黄页）、广告张贴、市场联盟、市场资讯七大栏目完美整合。
+四、界面设计精美，后台功能强大。傻瓜式后台操作，无需专业的网站制作知识，只要会打字，就会管理维护网站。</textarea>
+                            </label></td>
+                    </tr>
+                    <tr>
+                        <td height="5" colspan="2">&nbsp;</td>
+                    </tr>
+                </table></td>
+            </tr>
+        </table></td>
+        <td background="/admin_images/mail_rightbg.gif">&nbsp;</td>
+    </tr>
+    <tr>
+        <td valign="bottom" background="/admin_images/mail_leftbg.gif"><img src="/admin_images/buttom_left2.gif" width="17" height="17" /></td>
+        <td background="/admin_images/buttom_bgs.gif"><img src="/admin_images/buttom_bgs.gif" width="17" height="17"></td>
+        <td valign="bottom" background="/admin_images/mail_rightbg.gif"><img src="/admin_images/buttom_right2.gif" width="16" height="17" /></td>
+    </tr>
+</table>
+</body>
+

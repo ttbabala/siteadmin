@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<head>
+    <title>{$title}</title>
+    {load href="/admin_style/left.css"}
+    {load href="/admin_js/top.js" /}
+</head>
+<frameset rows="64,*"  frameborder="NO" border="0" framespacing="0">
+    <frame src="{:url('Common/top')}" noresize="noresize" frameborder="NO" name="topFrame" scrolling="no" marginwidth="0" marginheight="0" target="main" />
+    <frameset cols="200,*"  rows="560,*" id="frame">
+        <frame src="{:url('Common/left')}" name="left">
+        {block name="right"}<frame src="{:url('Common/right')}" name="right">{/block}
+    </frameset>
+    <noframes>
+        <body></body>
+    </noframes>
+</frameset>
+<body>
+</body>
+</html>

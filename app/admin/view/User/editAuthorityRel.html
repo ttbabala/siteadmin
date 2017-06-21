@@ -1,0 +1,279 @@
+{load href="/admin_style/skin.css" /}
+{load href="/admin_js/jquery.min.js" /}
+<style type="text/css">
+    <!--
+    body {
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        background-color: #EEF2FB;
+    }
+    .slibshow {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        line-height: 25px;
+        color: #666666;
+        text-align:center;
+    }
+    -->
+</style>
+<script language="javascript">
+    $(document).ready(function(){
+        $(".slibshow").mouseover(function(){
+            $(this).css('background-color','#8BB0CF')
+                    .css('color','#FFF');
+        });
+        $(".slibshow").mouseout(function(){
+            if($(this).children(":first").children(":first").attr('checked')){
+                $(this).css('background-color','#8BB0CF')
+                        .css('color','#FFF');
+            }else{
+                $(this).css('background-color','#fff')
+                        .css('color','#666666');
+            }
+        });
+        $(".checkbox").click(function(){
+            if($(this).attr('checked')) {
+                $(this).parent().parent().css('background-color','#8BB0CF');
+            }else{
+                $(this).parent().parent().css('background-color','#fff');
+            }
+        });
+
+    });
+
+    function changeCheckBox() {
+        $(".checkbox").attr('checked', false)  //取消选中checkbox
+                .parent().parent()
+                .css('background-color', '#fff').css('color', '#666666');
+    }
+
+
+    function showBg(authid,authname,authtype){
+        var bh = $("body").height();
+        var bw = $("body").width();
+        $("#fullbg").css({
+            height:bh,
+            width:bw,
+            display:"block"
+        });
+        $("input[name=authid]").attr('value',authid);
+        $("input[name=authname]").attr('value',authname);
+        $("input[name=authority_type]").each(function(){
+           if($(this).val() == authtype){
+                $(this).attr('checked',true);
+           }else{
+               $(this).attr('checked',false);
+           }
+        });
+        $("#dialog").show();
+    }
+    //关闭灰色 jQuery 遮罩
+    function closeBg() {
+        $("#fullbg,#dialog").hide();
+    }
+
+    //权限修改提示
+    function changeAuthMsg(){
+        if(confirm('您确认要修改用户权限？')){
+            return true;
+        }else{
+            history.go(0);
+            return false;
+        }
+    }
+
+</script>
+<body>
+<div id="main">
+    <div id="fullbg"></div>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="17" valign="top" background="/admin_images/mail_leftbg.gif"><img src="/admin_images/left-top-right.gif" width="17" height="29" /></td>
+            <td valign="top" background="/admin_images/content-bg.gif"><table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
+                <tr>
+                    <td height="31"><div class="titlebt">欢迎界面</div></td>
+                </tr>
+            </table></td>
+            <td width="16" valign="top" background="/admin_images/mail_rightbg.gif"><img src="/admin_images/nav-right-bg.gif" width="16" height="29" /></td>
+        </tr>
+        <tr>
+            <td valign="middle" background="/admin_images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="top" bgcolor="#F7F8F9"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="53%" valign="top">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td valign="top">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td valign="top"><span class="left_bt">网站后台管理系统-{$modelname}</span><br>
+                        <br>
+            <span class="left_txt">&nbsp;<img src="/admin_images/ts.gif" width="16" height="16"> 提示：<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您</span><span class="left_txt">可以在本栏目编辑网站角色权限，该栏目只有具备最高管理权限的用户如administrator用户才可操作；<br>
+</span></td>
+                    <td width="7%">&nbsp;</td>
+                    <td width="40%" valign="top"><table width="100%" height="144" border="0" cellpadding="0" cellspacing="0" class="line_table">
+                        <tr>
+                            <td width="7%" height="27" background="/admin_images/news-title-bg.gif"><img src="/admin_images/news-title-bg.gif" width="2" height="27"></td>
+                            <td width="93%" background="/admin_images/news-title-bg.gif" class="left_bt2">最新动态</td>
+                        </tr>
+                        <tr>
+                            <td height="102" valign="top">&nbsp;</td>
+                            <td height="102" valign="top"></td>
+                        </tr>
+                        <tr>
+                            <td height="5" colspan="2">&nbsp;</td>
+                        </tr>
+                    </table></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td valign="top"><!--JavaScript部分-->
+                        <SCRIPT language=javascript>
+                            function secBoard(n)
+                            {
+                                for(i=0;i<secTable.cells.length;i++)
+                                    secTable.cells[i].className="sec1";
+                                secTable.cells[n].className="sec2";
+                                for(i=0;i<mainTable.tBodies.length;i++)
+                                    mainTable.tBodies[i].style.display="none";
+                                mainTable.tBodies[n].style.display="block";
+                            }
+                        </SCRIPT>
+                        <!--HTML部分-->
+                        <TABLE class=main_tab id=mainTable cellSpacing=0
+                               cellPadding=0 width=100% border=0>
+                            <!--关于TBODY标记-->
+                            <TBODY style="DISPLAY: block">
+                            <TR>
+                                <TD vAlign=top align=middle>
+                                    <TABLE width="800" height="200" border=0 align="center" cellPadding=0 cellSpacing=0>
+                                        <form name="form1" method="post" action="{:url('User/editAuthority_cl')}">
+                                            <TBODY>
+                                            <TR>
+                                                <TD height="5" colspan="8"></TD>
+                                            </TR>
+                                            <TR>
+                                                <TD width="5%" bgcolor="#FAFBFC"></TD>
+                                                <TD width="5%" bgcolor="#FAFBFC"><div align="center"><span class="left_bt">ID</span></div></TD>
+                                                <TD width="15%" bgcolor="#FAFBFC"><div align="center"><span class="left_bt">权限名称</span></div></TD>
+                                                <TD width="60%" height="30" bgcolor="#FAFBFC"><div align="center">
+                                                    <span class="left_bt">权限类型</span></div></TD>
+                                                <TD width="15%" bgcolor="#FAFBFC"><div align="center"><span class="left_bt">编辑</span></div></TD>
+                                            </TR>
+                                            {volist name="authArray" id="vo"}
+                                            <TR class="slibshow" style="background-color: #fff;">
+                                                <TD width="5%" class="border_box">
+                                                    <input name="check[]" class="checkbox" type="checkbox" value="{$vo.authority_id}" />
+                                                </TD>
+                                                <TD width="5%" class="border_box">
+                                                    {$vo.authority_id}
+                                                </TD>
+                                                <TD width="15%" class="border_box">
+                                                    {$vo.authority_name}
+                                                </TD>
+                                                <TD width="60%" class="border_box">
+                                                    {switch name="vo.authority_type"}
+                                                    {case value='1'}注册用户 | 不具有后台管理权限{/case}
+                                                    {case value='2'}编辑 | 后台编辑、发布文章{/case}
+                                                    {case value='0'}管理员 | administrator{/case}
+                                                    {/switch}
+                                                </TD>
+                                                <TD width="15%" class="border_box">
+                                                    <div align="center">
+                                                        <li style="list-style-type: none">
+                                                            <a href="javascript:showBg('{$vo.authority_id}','{$vo.authority_name}',
+                                                                '{$vo.authority_type}');">
+                                                                <img src="/admin_images/edit.png" alt="编辑" title="编辑"
+                                                                     style="vertical-align: middle"/>
+                                                            </a>
+                                                            &nbsp;<a href="#"><img src="/admin_images/find.png" alt="详细" title="详细" style="vertical-align: middle"/></a>
+                                                            &nbsp;<a href="../user/editauthority_cl/type/delete/aid/{$vo.authority_id}"><img src="/admin_images/delete.png" alt="删除" title="删除" style="vertical-align: middle"/></a>
+                                                        </li>
+                                                    </div>
+                                                </TD>
+                                            </TR>
+                                            {/volist}
+                                            <TR>
+                                                <TD width="5%"></TD>
+                                                <TD width="5%"></TD>
+                                                <TD width="15%"></TD>
+                                                <TD width="60%">
+                                                    <div align="center">
+                                                        <input type="submit" value="选中的删除" class="button_x"/>
+                                                        <input type="button" value="取消选中" class="button_x" onclick="changeCheckBox()"/>
+                                                    </div>
+                                                </TD>
+                                                <TD width="15%"></TD>
+                                            </TR>
+                                            </TBODY>
+                                            <input type="hidden" name="hidDeleteAll" value="1" />
+                                        </form>
+                                    </TABLE>
+                                </TD>
+                            </TR>
+                            </TBODY>
+                            <!--关于cells集合-->
+                            <TBODY style="DISPLAY: none">
+                            </TBODY>
+                            <!--关于tBodies集合-->
+                            <TBODY style="DISPLAY: none">
+                            </TBODY>
+                            <!--关于display属性-->
+                            <TBODY style="DISPLAY: none">
+                            <TR>
+                                <TD vAlign=top align=middle>&nbsp;</TD>
+                            </TR>
+                            </TBODY>
+                        </TABLE></td>
+                    <td>&nbsp;</td>
+                    <td valign="top"><table width="100%" height="144" border="0" cellpadding="0" cellspacing="0" class="line_table">
+                        <tr>
+                            <td width="7%" height="27" background="/admin_images/news-title-bg.gif"><img src="../../../../public/static/images/news-title-bg.gif" width="2" height="27"></td>
+                            <td width="93%" background="/admin_images/news-title-bg.gif" class="left_bt2">程序说明</td>
+                        </tr>
+                        <tr>
+                            <td height="102" valign="top">&nbsp;</td>
+                            <td height="102" valign="top"><label></label>
+                                <label>
+              <textarea name="textarea" cols="48" rows="8" class="left_txt">一、专业的地区级商家门户建站首选方案！
+二、全站一号通，一次注册，终身使用，一个帐号，全站通用！
+三、分类信息、商家展示（百业联盟）、网上商城、网上名片（网上黄页）、广告张贴、市场联盟、市场资讯七大栏目完美整合。
+四、界面设计精美，后台功能强大。傻瓜式后台操作，无需专业的网站制作知识，只要会打字，就会管理维护网站。</textarea>
+                                </label></td>
+                        </tr>
+                        <tr>
+                            <td height="5" colspan="2">&nbsp;</td>
+                        </tr>
+                    </table></td>
+                </tr>
+            </table></td>
+            <td background="/admin_images/mail_rightbg.gif">&nbsp;</td>
+        </tr>
+        <tr>
+            <td valign="bottom" background="/admin_images/mail_leftbg.gif"><img src="/admin_images/buttom_left2.gif" width="17" height="17" /></td>
+            <td background="/admin_images/buttom_bgs.gif"><img src="/admin_images/buttom_bgs.gif" width="17" height="17"></td>
+            <td valign="bottom" background="/admin_images/mail_rightbg.gif"><img src="/admin_images/buttom_right2.gif" width="16" height="17" /></td>
+        </tr>
+        <div id="dialog">
+            <p class="close"><a href="#" onclick="closeBg();">关闭</a></p>
+            <form name="form1" id="form1" method="post" action="{:url('user/editAuthority_cl')}">
+                <div>权限名称：&nbsp;&nbsp;<input type="text" name="authname" value=""/>&nbsp;&nbsp;<span style="font-size:11px;color:gray;">// 名称在4-6个中文字符之间</span></div>
+                <div>权限类型：&nbsp;&nbsp;
+                    <input type="radio" name="authority_type" value="0"/>&nbsp;<span class="left_bt">管理员级别</span>
+                    <input type="radio" name="authority_type" value="2"/>&nbsp;<span class="left_bt">编辑权限</span>
+                    <input type="radio" name="authority_type" value="1"/>&nbsp;<span class="left_bt">注册用户</span>&nbsp;&nbsp;<span style="font-size:11px;color:gray;"></span></div>
+                <input type="hidden" name="editAuthority" value="1" />
+                <input type="hidden" name="authid" value="" />
+                <div><input type="submit" value="确认修改" onclick="changeAuthMsg();"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取消修改" onclick="history.go(0);"/></div>
+            </form>
+        </div>
+    </table>
+</div>
+</body>
+
